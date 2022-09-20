@@ -72,7 +72,7 @@ EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="a
             <div class="content-menu">
               <i class="fa fa-sign-out"></i>
               <a href="../process/logoutProcess.php" style="fontweight: 600"
-                >&nbspLogout</a
+                >Logout</a
               >
             </div>
             <hr />
