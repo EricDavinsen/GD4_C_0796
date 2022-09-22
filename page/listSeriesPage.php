@@ -5,8 +5,8 @@ include '../component/sidebar.php'
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <div class="body d-flex justify-content-between">
-    <h4>LIST MOVIE</h4>
-    <p><a href="../page/addMoviesPage.php"><button class ="w3-button w3-red">+
+    <h4>LIST SERIES</h4>
+    <p><a href="../page/addSeriesPage.php"><button class ="w3-button w3-red">+
     </button></a>
     </p>
 
@@ -19,13 +19,14 @@ include '../component/sidebar.php'
             <th scope="col">Name</th>
             <th scope="col">Genre</th>
             <th scope="col">Realese</th>
+            <th scope="col">Episode</th>
             <th scope="col">Season</th>
-            <th scope="col"></th>
+            <th scope="col">Synopsis</th>
         </tr>
     </thead>
     <tbody>
         <?php
-        $query = mysqli_query($con, "SELECT * FROM movies") or
+        $query = mysqli_query($con, "SELECT * FROM series") or
 die(mysqli_error($con));
 
             if (mysqli_num_rows($query) == 0) {
@@ -39,16 +40,18 @@ die(mysqli_error($con));
                 <td>'.$data['name'].'</td>
                 <td>'.$data['genre'].'</td>
                 <td>'.$data['realese'].'</td>
+                <td>'.$data['episode'].'</td>
                 <td>'.$data['season'].'</td>
+                <td>'.$data['synopsis'].'</td>
                 <td>
-                <a href="../page/editMoviesPage.php?id='.$data['id'].'" 
+                <a href="../page/editSeriesPage.php?id='.$data['id'].'" 
                 <i style="color: green" class="fa fa-edit fa-2x"></i> </a>
-                <a href="../process/deleteMovieProcess.php?id='.$data['id'].'"
+                <a href="../process/deleteSeriesProcess.php?id='.$data['id'].'"
                 onClick="return confirm ( \'Are you sure want to delete this data?\')"> 
                 <i style="color: red" class="fa fa-trash fa-2x"></i>
                 </a>
                 </td>
-            </tr>';
+                </tr>';
             $no++;
             }
         }
