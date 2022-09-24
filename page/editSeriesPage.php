@@ -20,14 +20,24 @@ include '../component/sidebar.php';
     <form action="../process/editSeriesProcess.php?id=<?php echo $id; ?>" method="post">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Name</label>
-            <input class="form-control" id="name" name="name">
+            <input class="form-control" id="name" name="name" value="<?php echo (isset($name)) ? $name: ''?>" aria-describedby="emailHelp">
 
         </div>
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Genre</label>
-            <select class="form-select" aria-label="multiple select example" name="genre[]" id="genre" 
-            multiple> 
-                <?php
+      <label for="exampleInputEmail1" class="form-label">Genre : </label>
+      <?php
+    $query = mysqli_query($con, "SELECT * FROM series WHERE id='$id'") or
+    die(mysqli_error($con));
+                while($data = mysqli_fetch_assoc($query)){
+                echo'
+                <tr>
+                <td>
+                    <td>'.$data['genre'].'</td>   
+                </td>                
+                </tr>';
+            } 
+            ?>
+      <select class="form-select" aria-label="multiple select example" name="genre[]" id="genre" multiple value=><?php
                     $array = array("Action", "Comedy", "Romance");
                     session_start();
                     $genreSelect = $_SESSION['genreSeries'];
@@ -42,27 +52,26 @@ include '../component/sidebar.php';
                              echo "<option value='".$name."'>".$name."</option>";
                         }
                     }
-                ?> 
-                </select>
-        </div>
+                ?> </select>
+    </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Realese</label>
-            <input class="form-control" id="realese" name="realese">
+            <input class="form-control" id="realese" name="realese" value="<?php echo (isset($realese)) ? $realese: ''?>" aria-describedby="emailHelp">
 
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Episode</label>
-            <input class="form-control" id="episode" name="episode">
+            <input class="form-control" id="episode" name="episode" value="<?php echo (isset($episode)) ? $episode: ''?>" aria-describedby="emailHelp">
 
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Season</label>
-            <input class="form-control" id="season" name="season">
+            <input class="form-control" id="season" name="season" value=" <?php echo (isset($season)) ? $season: ''?>" aria-describedby="emailHelp">
 
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Synopsis</label>
-            <input class="form-control" id="synopsis" name="synopsis">
+            <input class="form-control" id="synopsis" name="synopsis" value=" <?php echo (isset($synopsis)) ? $synopsis: ''?>" aria-describedby="emailHelp">
         </div>
         <div class="d-grid gap-2">
             <button type="submit" class="btn btn-primary" name="edit">Edit Movies</button>
